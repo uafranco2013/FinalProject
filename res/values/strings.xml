@@ -16,5 +16,6 @@
     <string name="gender">Gender</string>
     <string name="name">Name</string>
     <string name="submit">Submit</string>
+    <string name="title_activity_core">Messaging and Contacts</string>
 
 </resources>
