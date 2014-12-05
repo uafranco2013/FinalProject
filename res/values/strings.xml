@@ -9,5 +9,12 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="birthday">Date of Birth</string>
+    <string name="email">Email</string>
+    <string name="address">Address</string>
+    <string name="gender">Gender</string>
+    <string name="name">Name</string>
+    <string name="submit">Submit</string>
 
 </resources>

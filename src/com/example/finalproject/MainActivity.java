@@ -1,6 +1,10 @@
 package com.example.finalproject;
 
+import com.parse.ParseUser;
+
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +16,17 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if(currentUser != null){
+        	
+        }
+        
+        FragmentManager fManager = getFragmentManager();
+        FragmentTransaction fTransaction = fManager.beginTransaction();
+        SignInFragment signinFrag = new SignInFragment();
+        fTransaction.add(R.id.fragLayout, signinFrag);
+        fTransaction.commit();
+       
     }
 
 
