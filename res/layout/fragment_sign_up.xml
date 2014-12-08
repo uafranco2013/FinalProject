@@ -8,7 +8,7 @@
     <!-- TODO: Update blank fragment layout -->
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/editTextSUUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -21,10 +21,10 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/editTextSUPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/editTextSUUsername"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:ems="10"
@@ -32,10 +32,10 @@
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/editTextEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/editTextSUPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:ems="10"
@@ -43,10 +43,10 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText3"
+        android:layout_below="@+id/editTextEmail"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="14dp"
         android:ems="10"
@@ -54,10 +54,10 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editTextAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText4"
+        android:layout_below="@+id/editTextName"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="22dp"
         android:ems="10"
@@ -65,20 +65,20 @@
         android:inputType="textPostalAddress" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editTextGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText5"
+        android:layout_below="@+id/editTextAddress"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/gender" />
 
     <EditText
-        android:id="@+id/editText7"
+        android:id="@+id/editTextBirthday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText6"
+        android:layout_below="@+id/editTextGender"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
         android:ems="10"
@@ -86,12 +86,11 @@
         android:inputType="date" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText7"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="32dp"
         android:text="@string/submit" />
 
 </RelativeLayout>
