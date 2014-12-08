@@ -27,18 +27,18 @@ public final class R {
     public static final class id {
         public static final int RelativeLayout1=0x7f080001;
         public static final int action_settings=0x7f08000f;
-        public static final int button1=0x7f08000e;
         public static final int buttonForgotPassword=0x7f080006;
         public static final int buttonSignIn=0x7f080004;
         public static final int buttonSignUp=0x7f080005;
-        public static final int editText1=0x7f080007;
-        public static final int editText2=0x7f080008;
-        public static final int editText3=0x7f080009;
-        public static final int editText4=0x7f08000a;
-        public static final int editText5=0x7f08000b;
-        public static final int editText6=0x7f08000c;
-        public static final int editText7=0x7f08000d;
+        public static final int buttonSubmit=0x7f08000e;
+        public static final int editTextAddress=0x7f08000b;
+        public static final int editTextBirthday=0x7f08000d;
+        public static final int editTextEmail=0x7f080009;
+        public static final int editTextGender=0x7f08000c;
+        public static final int editTextName=0x7f08000a;
         public static final int editTextPassword=0x7f080003;
+        public static final int editTextSUPassword=0x7f080008;
+        public static final int editTextSUUsername=0x7f080007;
         public static final int editTextUsername=0x7f080002;
         public static final int fragLayout=0x7f080000;
     }
