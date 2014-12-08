@@ -62,6 +62,14 @@ public class SignInFragment extends Fragment {
 				
 			}
 		});
+		view.findViewById(R.id.buttonForgotPassword).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		return view;
 	
 	}
