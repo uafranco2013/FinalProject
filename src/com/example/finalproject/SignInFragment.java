@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,11 +50,12 @@ public class SignInFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				ParseUser.logInInBackground("Jerry", "showmethemoney", new LogInCallback() {					  
+				ParseUser.logInInBackground(username.getText().toString(), password.getText().toString(), new LogInCallback() {					  
 					@Override
 					public void done(ParseUser user, ParseException e) {
 						if (user != null) {
-						      // Hooray! The user is logged in.
+						      Intent intent = new Intent(getActivity(),CoreActivity.class);
+						      startActivity(intent);
 						} else {
 						      Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
 						}	

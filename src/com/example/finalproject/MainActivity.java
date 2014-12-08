@@ -5,6 +5,7 @@ import com.parse.ParseUser;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +19,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser != null){
-        	
+        	Intent intent = new Intent(MainActivity.this,CoreActivity.class);
+        	startActivity(intent);
         }
         
         FragmentManager fManager = getFragmentManager();

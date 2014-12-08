@@ -6,6 +6,7 @@ import com.parse.SignUpCallback;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +54,8 @@ public class SignUpFragment extends Fragment {
 				user.signUpInBackground(new SignUpCallback() {
 					  public void done(ParseException e) {
 					    if (e == null) {
-					    	Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+					    	Intent intent = new Intent(getActivity(),CoreActivity.class);
+						    startActivity(intent);
 					    } else {
 					      Toast.makeText(getActivity(), "Error", Toast.LENGTH_SHORT).show();
 					    }

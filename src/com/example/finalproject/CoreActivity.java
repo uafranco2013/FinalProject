@@ -1,16 +1,38 @@
 package com.example.finalproject;
 
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 public class CoreActivity extends Activity {
 
+	Tab tabMsg, tabFollowing, tabAllUsers;
+	Fragment fragmentMsg = new MessagesFragment();
+	Fragment fragmentFollowing = new FollowingFragment();
+	Fragment fragmentAllUsers = new AllUsersFragment();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_core);
+		ActionBar actionBar = getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		tabMsg = actionBar.newTab().setText("Messsages");
+		tabFollowing = actionBar.newTab().setText("Following");
+		tabAllUsers = actionBar.newTab().setText("All Users");
+		
+		tabMsg.setTabListener(new MyTabListener(fragmentMsg));
+		tabFollowing.setTabListener(new MyTabListener(fragmentFollowing));
+		tabAllUsers.setTabListener(new MyTabListener(fragmentAllUsers));
+		
+		actionBar.addTab(tabMsg);
+		actionBar.addTab(tabFollowing);
+		actionBar.addTab(tabAllUsers);
+		
 	}
 
 	@Override
