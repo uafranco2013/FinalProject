@@ -57,4 +57,13 @@
         android:layout_centerHorizontal="true"
         android:text="@string/forgot_password" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonForgotPassword"
+        android:layout_centerHorizontal="true"
+        android:text="@string/forgotprompt"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
 </RelativeLayout>

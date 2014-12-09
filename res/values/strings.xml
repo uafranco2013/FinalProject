@@ -21,5 +21,6 @@
     <string name="reply_str">Say something</string>
     <string name="Reply_btn_str">Reply</string>
     <string name="title_activity_profile_settings">ProfileSettingsActivity</string>
+    <string name="forgotprompt">Input Email in username field</string>
 
 </resources>

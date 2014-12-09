@@ -3,6 +3,7 @@ package com.example.finalproject;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.RequestPasswordResetCallback;
 
 import android.os.Bundle;
 import android.app.Fragment;
@@ -68,7 +69,16 @@ public class SignInFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				ParseUser.requestPasswordResetInBackground(username.getText().toString(),
+                        new RequestPasswordResetCallback() {
+					public void done(ParseException e) {
+						if (e == null) {
+							Toast.makeText(getActivity(), "Check your e-mail", Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(getActivity(), "Invalid e-mail", Toast.LENGTH_SHORT).show();
+						}
+					}
+				});
 				
 			}
 		});
