@@ -17,5 +17,9 @@
     <string name="name">Name</string>
     <string name="submit">Submit</string>
     <string name="title_activity_core">Messaging and Contacts</string>
+    <string name="title_activity_messages">MessagesActivity</string>
+    <string name="reply_str">Say something</string>
+    <string name="Reply_btn_str">Reply</string>
+    <string name="title_activity_profile_settings">ProfileSettingsActivity</string>
 
 </resources>

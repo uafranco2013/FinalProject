@@ -30,6 +30,14 @@
             android:name=".CoreActivity"
             android:label="@string/title_activity_core" >
         </activity>
+        <activity
+            android:name=".MessagesActivity"
+            android:label="@string/title_activity_messages" >
+        </activity>
+        <activity
+            android:name=".ProfileSettingsActivity"
+            android:label="@string/title_activity_profile_settings" >
+        </activity>
     </application>
 
 </manifest>
