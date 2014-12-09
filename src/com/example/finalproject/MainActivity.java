@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+//
 
 public class MainActivity extends Activity {
 
@@ -19,7 +20,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         ParseUser currentUser = ParseUser.getCurrentUser();
         if(currentUser != null){
-        	Intent intent = new Intent(MainActivity.this,CoreActivity.class);
+        	Intent intent = new Intent(MainActivity.this,Activity.class);
         	startActivity(intent);
         }
         

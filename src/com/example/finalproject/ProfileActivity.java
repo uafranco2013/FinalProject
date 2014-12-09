@@ -4,19 +4,27 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Switch;
+import android.widget.TextView;
 
-public class ProfileSettingsActivity extends Activity {
+public class ProfileActivity extends Activity {
+	TextView name, gender, birthday, address;
+	Button sendNewMessage, edit, deleteAccount;
+	Switch follow;
+	ImageView profilePic;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_profile_settings);
+		setContentView(R.layout.activity_profile);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.profile_settings, menu);
+		getMenuInflater().inflate(R.menu.profile, menu);
 		return true;
 	}
 
