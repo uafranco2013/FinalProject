@@ -26,15 +26,12 @@ public class AllUsersFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_all_users, container, false);
-		/*ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), "User");
-		adapter.setTextKey("username");*/
-		
-		
-		//adapter.setTextKey("name");
+		ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), "_User");
+		adapter.setTextKey("name");
 		
 		
 		ListView listView = (ListView) view.findViewById(R.id.listViewUsers);
-		//listView.setAdapter(adapter);
+		listView.setAdapter(adapter);
 		return view;
 	}
 
