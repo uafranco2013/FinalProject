@@ -30,6 +30,7 @@ public class AllUsersFragment extends Fragment {
 		// Required empty public constructor
 	}
 
+	ParseUser currentUser = ParseUser.getCurrentUser();
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -54,8 +55,22 @@ public class AllUsersFragment extends Fragment {
 		});
 		*/
 		ParseUser user = ParseUser.getCurrentUser();
-		ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), "_User");
-		adapter.setTextKey("name");
+		//ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), "_User");
+		ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), new ParseQueryAdapter.QueryFactory<ParseObject>() {
+
+			@Override
+			public ParseQuery<ParseObject> create() {
+				ParseQuery query = new ParseQuery("_User");
+				query.whereNotEqualTo("username", currentUser.getUsername());
+				query.orderByAscending("username");
+				return query;
+			}
+		});
+		
+		
+		
+		
+		adapter.setTextKey("username");
 		listView = (ListView) view.findViewById(R.id.listViewUsers);
 		listView.setAdapter(adapter);
 		
