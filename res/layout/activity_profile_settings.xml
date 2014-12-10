@@ -8,11 +8,96 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.finalproject.ProfileSettingsActivity" >
 
-    <GridLayout
+    <ImageView
+        android:id="@+id/imageViewProfilePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
-    </GridLayout>
+        android:layout_centerHorizontal="true"
+        android:clickable="true"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textViewGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewName"
+        android:layout_below="@+id/textViewName"
+        android:layout_marginTop="15dp"
+        android:text="@string/gender"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textViewBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewGender"
+        android:layout_below="@+id/textViewGender"
+        android:layout_marginTop="16dp"
+        android:text="@string/birthday"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textViewAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewBirthday"
+        android:layout_below="@+id/textViewBirthday"
+        android:layout_marginTop="17dp"
+        android:text="@string/address"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:id="@+id/buttonEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonSendNewMessage"
+        android:layout_below="@+id/buttonSendNewMessage"
+        android:layout_marginTop="14dp"
+        android:text="@string/edit_str" />
+
+    <Switch
+        android:id="@+id/switchFollow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Switch" />
+
+    <Button
+        android:id="@+id/buttonDeleteAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonEdit"
+        android:layout_below="@+id/buttonEdit"
+        android:layout_marginTop="18dp"
+        android:text="@string/deleteAccount_str" />
+
+    <Button
+        android:id="@+id/buttonSendNewMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textViewAddress"
+        android:layout_below="@+id/switchFollow"
+        android:layout_marginTop="14dp"
+        android:text="@string/sendNewMsg" />
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewProfilePic"
+        android:layout_marginTop="25dp"
+        android:layout_toLeftOf="@+id/switchFollow"
+        android:text="@string/name"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textViewUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageViewProfilePic"
+        android:layout_centerHorizontal="true"
+        android:text="@string/username"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>
