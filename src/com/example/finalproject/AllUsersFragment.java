@@ -50,7 +50,8 @@ public class AllUsersFragment extends Fragment {
 			}
 		});
 		*/
-		
+		ParseUser user = ParseUser.getCurrentUser();
+		Log.d("test", user.toString());
 		
 		ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), "_User");
 		adapter.setTextKey("name");

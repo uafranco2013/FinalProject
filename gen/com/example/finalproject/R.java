@@ -26,7 +26,7 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f080009;
-        public static final int action_settings=0x7f080018;
+        public static final int action_settings=0x7f080019;
         public static final int buttonForgotPassword=0x7f08000e;
         public static final int buttonReply=0x7f080004;
         public static final int buttonSignIn=0x7f08000c;
@@ -48,8 +48,9 @@ public final class R {
         public static final int listViewMessages=0x7f080003;
         public static final int listViewMsgs=0x7f080008;
         public static final int listViewUsers=0x7f080006;
-        public static final int textView1=0x7f08000f;
         public static final int textViewContactName=0x7f080002;
+        public static final int textViewLastMsg=0x7f080018;
+        public static final int textViewName=0x7f08000f;
     }
     public static final class layout {
         public static final int activity_core=0x7f030000;
@@ -61,6 +62,7 @@ public final class R {
         public static final int fragment_messages=0x7f030006;
         public static final int fragment_sign_in=0x7f030007;
         public static final int fragment_sign_up=0x7f030008;
+        public static final int message_list_layout=0x7f030009;
     }
     public static final class menu {
         public static final int core=0x7f070000;

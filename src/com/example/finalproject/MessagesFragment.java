@@ -28,7 +28,7 @@ public class MessagesFragment extends Fragment {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_messages, container, false);
 		ListView listView = (ListView) view.findViewById(R.id.listViewMsgs);
-		
+		/**
 		ParseQueryAdapter<ParseObject> adapter =
 				  new ParseQueryAdapter<ParseObject>(getActivity(), new ParseQueryAdapter.QueryFactory<ParseObject>() {
 				    public ParseQuery<ParseObject> create() {
@@ -41,8 +41,10 @@ public class MessagesFragment extends Fragment {
 		
 		adapter.setTextKey("message");
 		listView.setAdapter(adapter);
+		*/
+		CustomAdapter adapter = new CustomAdapter(getActivity());
 		
-		
+		listView.setAdapter(adapter);
 		
 		return view;
 	}
