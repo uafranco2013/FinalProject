@@ -7,9 +7,12 @@ import com.parse.ParseUser;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 /**
@@ -18,6 +21,7 @@ import android.widget.ListView;
  */
 public class MessagesFragment extends Fragment {
 
+	ListView listView;
 	public MessagesFragment() {
 		// Required empty public constructor
 	}
@@ -27,7 +31,7 @@ public class MessagesFragment extends Fragment {
 			Bundle savedInstanceState) {
 		// Inflate the layout for this fragment
 		View view = inflater.inflate(R.layout.fragment_messages, container, false);
-		ListView listView = (ListView) view.findViewById(R.id.listViewMsgs);
+		listView = (ListView) view.findViewById(R.id.listViewMsgs);
 		/**
 		ParseQueryAdapter<ParseObject> adapter =
 				  new ParseQueryAdapter<ParseObject>(getActivity(), new ParseQueryAdapter.QueryFactory<ParseObject>() {
@@ -45,6 +49,21 @@ public class MessagesFragment extends Fragment {
 		CustomAdapter adapter = new CustomAdapter(getActivity());
 		
 		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				ParseObject object = (ParseObject) listView.getAdapter().getItem(position);
+				ParseUser sender = object.getParseUser("sender");
+				String username = sender.getString("username");
+				Intent intent = new Intent(getActivity(),MessagesActivity.class);
+				intent.putExtra("username", username);
+				startActivity(intent);
+				
+				
+			}
+		});
 		
 		return view;
 	}
