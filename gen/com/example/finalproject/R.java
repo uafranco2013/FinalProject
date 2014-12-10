@@ -25,29 +25,38 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f080007;
-        public static final int action_settings=0x7f080016;
-        public static final int buttonForgotPassword=0x7f08000c;
+        public static final int RelativeLayout1=0x7f080011;
+        public static final int action_settings=0x7f08001f;
+        public static final int buttonDeleteAccount=0x7f08000e;
+        public static final int buttonEdit=0x7f08000b;
+        public static final int buttonForgotPassword=0x7f080016;
         public static final int buttonReply=0x7f080004;
-        public static final int buttonSignIn=0x7f08000a;
-        public static final int buttonSignUp=0x7f08000b;
-        public static final int buttonSubmit=0x7f080015;
-        public static final int editTextAddress=0x7f080012;
-        public static final int editTextBirthday=0x7f080014;
-        public static final int editTextEmail=0x7f080010;
-        public static final int editTextGender=0x7f080013;
-        public static final int editTextName=0x7f080011;
-        public static final int editTextPassword=0x7f080009;
+        public static final int buttonSendNewMessage=0x7f08000c;
+        public static final int buttonSignIn=0x7f080014;
+        public static final int buttonSignUp=0x7f080015;
+        public static final int buttonSubmit=0x7f08001e;
+        public static final int editTextAddress=0x7f08001b;
+        public static final int editTextBirthday=0x7f08001d;
+        public static final int editTextEmail=0x7f080019;
+        public static final int editTextGender=0x7f08001c;
+        public static final int editTextName=0x7f08001a;
+        public static final int editTextPassword=0x7f080013;
         public static final int editTextReplyMessage=0x7f080005;
-        public static final int editTextSUPassword=0x7f08000f;
-        public static final int editTextSUUsername=0x7f08000e;
-        public static final int editTextUsername=0x7f080008;
+        public static final int editTextSUPassword=0x7f080018;
+        public static final int editTextSUUsername=0x7f080017;
+        public static final int editTextUsername=0x7f080012;
         public static final int fragLayout=0x7f080001;
         public static final int fragmentTabLayout=0x7f080000;
+        public static final int imageViewProfilePic=0x7f080006;
         public static final int listViewMessages=0x7f080003;
-        public static final int listViewUsers=0x7f080006;
-        public static final int textView1=0x7f08000d;
+        public static final int listViewUsers=0x7f080010;
+        public static final int switchFollow=0x7f08000d;
+        public static final int textViewAddress=0x7f08000a;
+        public static final int textViewBirthday=0x7f080009;
         public static final int textViewContactName=0x7f080002;
+        public static final int textViewGender=0x7f080007;
+        public static final int textViewName=0x7f080008;
+        public static final int textViewUserName=0x7f08000f;
     }
     public static final class layout {
         public static final int activity_core=0x7f030000;
@@ -72,6 +81,8 @@ public final class R {
         public static final int address=0x7f05000b;
         public static final int app_name=0x7f050000;
         public static final int birthday=0x7f050009;
+        public static final int deleteAccount_str=0x7f050017;
+        public static final int edit_str=0x7f050016;
         public static final int email=0x7f05000a;
         public static final int forgot_password=0x7f050007;
         public static final int forgotprompt=0x7f050014;
@@ -81,6 +92,7 @@ public final class R {
         public static final int name=0x7f05000d;
         public static final int password=0x7f050004;
         public static final int reply_str=0x7f050011;
+        public static final int sendNewMsg=0x7f050015;
         public static final int sign_in=0x7f050005;
         public static final int sign_up=0x7f050006;
         public static final int submit=0x7f05000e;
