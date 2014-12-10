@@ -25,7 +25,7 @@ public class CustomAdapter extends ParseQueryAdapter<ParseObject> {
 				query.whereEqualTo("receiver", currentUser);
 				query.include("sender");
 				query.include("receiver");
-				//query.whereEqualTo("highPri", true);
+				
 				return query;
 			}
 		});
