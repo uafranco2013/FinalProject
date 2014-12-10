@@ -11,10 +11,12 @@ import com.parse.ParseUser;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 /**
@@ -23,6 +25,7 @@ import android.widget.ListView;
  */
 public class AllUsersFragment extends Fragment {
 
+	ListView listView;
 	public AllUsersFragment() {
 		// Required empty public constructor
 	}
@@ -51,13 +54,27 @@ public class AllUsersFragment extends Fragment {
 		});
 		*/
 		ParseUser user = ParseUser.getCurrentUser();
-		Log.d("test", user.toString());
-		
 		ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), "_User");
 		adapter.setTextKey("name");
-		ListView listView = (ListView) view.findViewById(R.id.listViewUsers);
+		listView = (ListView) view.findViewById(R.id.listViewUsers);
 		listView.setAdapter(adapter);
+		
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent(getActivity(), ProfileSettingsActivity.class);
+				ParseObject object = (ParseObject) listView.getAdapter().getItem(position);
+				String username = object.getString("username");
+				intent.putExtra("username", username);
+				startActivity(intent);
+				
+			}
+		});
+		
 		return view;
+	
 	}
 
 }
