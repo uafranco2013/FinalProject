@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
 import com.parse.ParseObject;
@@ -16,15 +17,18 @@ public class CustomAdapter extends ParseQueryAdapter<ParseObject> {
 
 	static ParseUser currentUser = ParseUser.getCurrentUser();
 	public CustomAdapter(Context context) {
-		// Use the QueryFactory to construct a PQA that will only show
-		// Todos marked as high-pri
+		
+
 		super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
 			public ParseQuery create() {
 				
 				ParseQuery query = new ParseQuery("Messages");
 				query.whereEqualTo("receiver", currentUser);
+				query.whereEqualTo("isMostRecent", true);
+				//query.whereEqualTo("sender", currentUser);
 				query.include("sender");
 				query.include("receiver");
+				query.orderByDescending("createdAt");
 				
 				return query;
 			}
@@ -45,11 +49,11 @@ public class CustomAdapter extends ParseQueryAdapter<ParseObject> {
 		
 		ParseUser sender = object.getParseUser("sender");
 		//String word = sender.getEmail();
-		Log.d("test", sender.get("name") + " " +currentUser.get("name"));
+		//Log.d("test", sender.get("name") + " " +currentUser.get("name"));
 		titleTextView.setText(sender.getString("name"));
 		// Add a reminder of how long this item has been outstanding
-		TextView timestampView = (TextView) v.findViewById(R.id.textViewLastMsg);
-		timestampView.setText(object.getString("message"));
+		TextView messageText = (TextView) v.findViewById(R.id.textViewLastMsg);
+		messageText.setText(object.getString("message"));
 		return v;
 	}
 
