@@ -25,5 +25,7 @@
     <string name="sendNewMsg">Send New Message</string>
     <string name="edit_str">Edit</string>
     <string name="deleteAccount_str">Delete String</string>
+    <string name="title_activity_edit_settings">EditSettingsActivity</string>
+    <string name="follow_str">Follow</string>
 
 </resources>
