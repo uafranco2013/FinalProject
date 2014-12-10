@@ -73,9 +73,9 @@ public class ProfileSettingsActivity extends Activity {
 
 							@Override
 							public void onClick(View v) {
-								// Intent intent = new
-								// Intent(ProfileSettingsActivity.this, );
-
+								Intent intent = new
+								Intent(ProfileSettingsActivity.this, EditProfileActivity.class);
+								startActivity(intent);
 							}
 						});
 
@@ -129,7 +129,7 @@ public class ProfileSettingsActivity extends Activity {
 								if (followBtn.getText().toString().equals("Follow")){
 									followBtn.setText("Unfollow");
 									following.put("follower", user);
-									following.put("following", otherUser);
+									following.put("following", otherUser.getUsername());
 									following.saveInBackground();
 									Log.d("demo", "follower: " + user.getUsername());
 								}else{
