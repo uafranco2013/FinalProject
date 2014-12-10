@@ -57,6 +57,7 @@ public class MessagesFragment extends Fragment {
 				ParseObject object = (ParseObject) listView.getAdapter().getItem(position);
 				ParseUser sender = object.getParseUser("sender");
 				String username = sender.getString("username");
+				//Log.d("something", username);
 				Intent intent = new Intent(getActivity(),MessagesActivity.class);
 				intent.putExtra("username", username);
 				startActivity(intent);
