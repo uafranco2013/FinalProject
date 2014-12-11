@@ -22,6 +22,8 @@ public class ProfileSettingsActivity extends Activity {
 	ImageView profilePic;
 	TextView name, gender, birthday, address, userName;
 	Button sendNewMsg, edit, delete, followBtn;
+	ParseUser user = ParseUser.getCurrentUser();
+	ParseUser otherUser;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,16 +57,17 @@ public class ProfileSettingsActivity extends Activity {
 			query.findInBackground(new FindCallback<ParseUser>() {
 
 				public void done(List<ParseUser> objects, ParseException e) {
-					final ParseUser otherUser = objects.get(0);
-					final ParseUser user = ParseUser.getCurrentUser();
+					otherUser = objects.get(0);
 
-					if (user == otherUser) {
+					if (user.getUsername().equals(otherUser.getUsername())) {
 						userName.setText(user.getUsername().toString());
 						name.setText(user.get("name").toString());
 						gender.setText(user.get("gender").toString());
 						birthday.setText(user.get("birthday").toString());
 						address.setText(user.get("address").toString());
 						// profilePic.
+						
+						Log.d("demo", otherUser.getString("name"));
 
 						edit.setVisibility(View.VISIBLE);
 						delete.setVisibility(View.VISIBLE);
@@ -85,18 +88,28 @@ public class ProfileSettingsActivity extends Activity {
 							public void onClick(View v) {
 								try {
 									user.delete();
+									ParseUser.logOut();
+									user = ParseUser.getCurrentUser();
+									
 									Intent intent = new Intent(
 											ProfileSettingsActivity.this,
 											MainActivity.class);
+									//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+									//intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+									intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+									intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 									startActivity(intent);
+									finish();
 								} catch (ParseException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
+								
+								
 							}
 						});
 
-					} else if (user != otherUser) {
+					} else{
 						userName.setText(otherUser.getUsername().toString());
 						name.setText(otherUser.get("name").toString());
 						gender.setText(otherUser.get("gender").toString());
