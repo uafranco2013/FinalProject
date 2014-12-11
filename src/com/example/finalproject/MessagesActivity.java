@@ -1,12 +1,22 @@
 package com.example.finalproject;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -17,11 +27,88 @@ public class MessagesActivity extends Activity {
 	ListView messages;
 	EditText replyMessage;
 	Button replyButton;
-
+	ParseUser otherUser;
+	ParseUser currentUser = ParseUser.getCurrentUser();
+	String username = "";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_messages);
+		messages = (ListView) findViewById(R.id.listViewMessages);
+		contactName = (TextView) findViewById(R.id.textViewContactName);
+		replyButton = (Button) findViewById(R.id.buttonReply);
+		replyMessage = (EditText) findViewById(R.id.editTextReplyMessage);
+		if(getIntent().getExtras() != null){
+			username = getIntent().getExtras().getString("username");			
+		}
+		
+		ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(MessagesActivity.this, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+
+			@Override
+			public ParseQuery<ParseObject> create() {
+				List<ParseUser> userList = new ArrayList<ParseUser>();
+				ParseQuery<ParseUser> query = ParseUser.getQuery();
+				query.whereEqualTo("username", username);
+				//query.find()
+				try {
+					userList = query.find();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				otherUser = userList.get(0);
+				//Log.d("other", otherUser.toString());
+				List<ParseQuery<ParseObject>> queries = new ArrayList<ParseQuery<ParseObject>>();
+				ParseQuery sending = new ParseQuery("Messages");
+				sending.whereEqualTo("sender", currentUser);
+				sending.whereEqualTo("receiver", otherUser);
+				ParseQuery receiving = new ParseQuery("Messages");
+				receiving.whereEqualTo("sender", otherUser);
+				receiving.whereEqualTo("receiver", currentUser);
+				queries.add(sending);
+				queries.add(receiving);
+				ParseQuery finalQuery = ParseQuery.or(queries);
+				finalQuery.orderByDescending("createdAt");
+				contactName.setText(otherUser.getString("name").toString());
+				return finalQuery;
+				
+			}
+		});
+		adapter.setTextKey("message");
+		//Log.d("ada", adapter.toString());
+		messages.setAdapter(adapter);
+		replyButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ParseQuery<ParseObject> lastQuery = ParseQuery.getQuery("Messages");
+				lastQuery.whereEqualTo("sender", currentUser);
+				lastQuery.whereEqualTo("receiver", otherUser);
+				lastQuery.whereEqualTo("isMostRecent", true);
+				lastQuery.findInBackground(new FindCallback<ParseObject>() {
+
+					@Override
+					public void done(List<ParseObject> objects, ParseException e) {
+						ParseObject lastMessage = objects.get(0);
+						if(e == null){
+							lastMessage.put("isMostRecent", false);
+							lastMessage.saveInBackground();
+							ParseObject message = new ParseObject("Messages");
+							message.put("message", replyMessage.getText().toString().trim());
+							message.put("sender", currentUser);
+							message.put("receiver", otherUser);
+							message.put("isMostRecent", true);
+							message.saveInBackground();
+						}
+						else{
+							Log.d("error", e.toString());
+						}
+						
+					}
+				});
+			}
+		});
+		
 	}
 
 	@Override
