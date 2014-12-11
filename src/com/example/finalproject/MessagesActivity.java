@@ -89,10 +89,13 @@ public class MessagesActivity extends Activity {
 
 					@Override
 					public void done(List<ParseObject> objects, ParseException e) {
-						ParseObject lastMessage = objects.get(0);
-						if(e == null){
+						if(objects.size() > 0){
+							ParseObject lastMessage = objects.get(0);
 							lastMessage.put("isMostRecent", false);
 							lastMessage.saveInBackground();
+						}
+						
+						if(e == null){
 							ParseObject message = new ParseObject("Messages");
 							message.put("message", replyMessage.getText().toString().trim());
 							message.put("sender", currentUser);
