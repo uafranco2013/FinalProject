@@ -127,10 +127,8 @@ public class ProfileSettingsActivity extends Activity {
 										Intent intent = new Intent(
 												ProfileSettingsActivity.this,
 												MessagesActivity.class);
-										intent.putExtra("User", user
-												.getUsername().toString());
-										intent.putExtra("OtherUser", otherUser
-												.getUsername().toString());
+										intent.putExtra("username", otherUser
+												.getUsername());
 										startActivity(intent);
 									}
 								});
