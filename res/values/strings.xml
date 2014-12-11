@@ -27,15 +27,13 @@
     <string name="deleteAccount_str">Delete Account</string>
     <string name="title_activity_edit_settings">EditSettingsActivity</string>
     <string name="follow_str">Follow</string>
-<<<<<<< HEAD
     <string name="sign_out">Sign Out</string>
     <string name="view_profile">My Profile</string>
-=======
     <string name="title_activity_edit_profile">EditProfileActivity</string>
     <string name="gallery_str">Gallery</string>
     <string name="camera_str">Camera</string>
     <string name="saveChanges_str">Save Changes</string>
     <string name="editPic_str">Change Profile Picture</string>
->>>>>>> master
+
 
 </resources>
