@@ -157,8 +157,18 @@ public class ProfileSettingsActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
+		ParseUser currentUser = ParseUser.getCurrentUser();
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.sign_out) {
+			ParseUser.logOut();
+			currentUser = ParseUser.getCurrentUser();
+			Intent intent = new Intent(ProfileSettingsActivity.this,MainActivity.class);
+			//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			//intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

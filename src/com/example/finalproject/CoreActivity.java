@@ -1,9 +1,12 @@
 package com.example.finalproject;
 
+import com.parse.ParseUser;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +22,9 @@ public class CoreActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_core);
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if(currentUser.equals(null))
+			finish();
 		ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		tabMsg = actionBar.newTab().setText("Messsages");
@@ -47,8 +53,23 @@ public class CoreActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
+		ParseUser currentUser = ParseUser.getCurrentUser();
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.sign_out) {
+			ParseUser.logOut();
+			currentUser = ParseUser.getCurrentUser();
+			Intent intent = new Intent(CoreActivity.this,MainActivity.class);
+			//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			//intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			finish();
+			return true;
+		} else if(id == R.id.my_profile){
+			Intent intent = new Intent(CoreActivity.this, ProfileSettingsActivity.class );
+			intent.putExtra("username", currentUser.getUsername());
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

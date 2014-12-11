@@ -1,6 +1,9 @@
 package com.example.finalproject;
 
+import com.parse.ParseUser;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,8 +36,23 @@ public class MessagesActivity extends Activity {
 		// Handle action bar item clicks here. The action bar will
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
+		ParseUser currentUser = ParseUser.getCurrentUser();
 		int id = item.getItemId();
-		if (id == R.id.action_settings) {
+		if (id == R.id.sign_out) {
+			ParseUser.logOut();
+			currentUser = ParseUser.getCurrentUser();
+			Intent intent = new Intent(MessagesActivity.this,MainActivity.class);
+			//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			//intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			finish();
+			return true;
+		} else if(id == R.id.my_profile){
+			Intent intent = new Intent(MessagesActivity.this, ProfileSettingsActivity.class );
+			intent.putExtra("username", currentUser.getUsername());
+			startActivity(intent);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

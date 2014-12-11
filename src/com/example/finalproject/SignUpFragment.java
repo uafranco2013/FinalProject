@@ -44,13 +44,13 @@ public class SignUpFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				ParseUser user = new ParseUser();
-				user.setUsername(username.getText().toString());
-				user.setPassword(password.getText().toString());
-				user.setEmail(email.getText().toString());
-				user.put("name", name.getText().toString());
-				user.put("address", address.getText().toString());
-				user.put("gender", gender.getText().toString());
-				user.put("birthday", birthday.getText().toString());
+				user.setUsername(username.getText().toString().trim());
+				user.setPassword(password.getText().toString().trim());
+				user.setEmail(email.getText().toString().trim());
+				user.put("name", name.getText().toString().trim());
+				user.put("address", address.getText().toString().trim());
+				user.put("gender", gender.getText().toString().trim());
+				user.put("birthday", birthday.getText().toString().trim());
 				user.signUpInBackground(new SignUpCallback() {
 					  public void done(ParseException e) {
 					    if (e == null) {
