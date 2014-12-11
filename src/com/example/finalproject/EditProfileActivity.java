@@ -1,27 +1,11 @@
 package com.example.finalproject;
 
-import java.io.BufferedReader;
-import java.io.FileDescriptor;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
-
-import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class EditProfileActivity extends Activity {
 	ImageView profilePic;
@@ -51,6 +34,7 @@ public class EditProfileActivity extends Activity {
 		username = (EditText) findViewById(R.id.editTextEditUserName);
 		name = (EditText) findViewById(R.id.editTextEditName);
 		email = (EditText) findViewById(R.id.editTextEditEmail);
+		//password = (EditText) findViewById(R.id.editTextEditPassword);
 		birthday = (EditText) findViewById(R.id.editTextEditBirthday);
 		gender = (EditText) findViewById(R.id.editTextEditGender);
 		address = (EditText) findViewById(R.id.editTextEditAddress);
@@ -60,7 +44,7 @@ public class EditProfileActivity extends Activity {
 		username.setText(user.getUsername());
 		name.setText(user.getString("name"));
 		email.setText(user.getEmail());
-		password.setText(user.getString("password"));
+		//password.setText(user.getString("password"));
 		birthday.setText(user.getString("birthday"));
 		gender.setText(user.getString("gender"));
 		address.setText(user.getString("address"));
@@ -159,9 +143,7 @@ public class EditProfileActivity extends Activity {
 	        Uri uri = null;
 	        if (resultData != null) {
 	            uri = resultData.getData();
-	            showImage(uri);
-	            
-	            
+	            showImage(uri);  
 	        }
 	    }
 	}
