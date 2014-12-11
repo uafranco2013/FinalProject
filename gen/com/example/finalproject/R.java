@@ -27,7 +27,7 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f08001c;
-        public static final int action_settings=0x7f08002d;
+        public static final int action_settings=0x7f08002e;
         public static final int buttonDeleteAccount=0x7f080016;
         public static final int buttonEdit=0x7f080017;
         public static final int buttonEditPic=0x7f080006;
@@ -63,14 +63,15 @@ public final class R {
         public static final int listViewMessages=0x7f08000c;
         public static final int listViewMsgs=0x7f08001b;
         public static final int listViewUsers=0x7f080019;
-        public static final int my_profile=0x7f08002c;
-        public static final int sign_out=0x7f08002b;
+        public static final int my_profile=0x7f08002d;
+        public static final int sign_out=0x7f08002c;
         public static final int textViewAddress=0x7f080013;
         public static final int textViewBirthday=0x7f080012;
         public static final int textViewContactName=0x7f08000b;
         public static final int textViewGender=0x7f080010;
-        public static final int textViewLastMsg=0x7f08002a;
+        public static final int textViewLastMsg=0x7f08002b;
         public static final int textViewName=0x7f080011;
+        public static final int textViewReceiver=0x7f08002a;
         public static final int textViewUserName=0x7f080014;
     }
     public static final class layout {
@@ -84,7 +85,8 @@ public final class R {
         public static final int fragment_messages=0x7f030007;
         public static final int fragment_sign_in=0x7f030008;
         public static final int fragment_sign_up=0x7f030009;
-        public static final int message_list_layout=0x7f03000a;
+        public static final int message_layout=0x7f03000a;
+        public static final int message_list_layout=0x7f03000b;
     }
     public static final class menu {
         public static final int core=0x7f070000;
