@@ -26,20 +26,11 @@
         android:hint="@string/email" />
 
     <EditText
-        android:id="@+id/editTextEditPassword"
+        android:id="@+id/editTextEditBirthday"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/editTextEditEmail"
         android:layout_below="@+id/editTextEditEmail"
-        android:ems="10"
-        android:hint="@string/password" />
-
-    <EditText
-        android:id="@+id/editTextEditBirthday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editTextEditPassword"
-        android:layout_below="@+id/editTextEditPassword"
         android:ems="10"
         android:hint="@string/birthday" >
 
