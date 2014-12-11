@@ -11,12 +11,16 @@ import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -31,6 +35,8 @@ public class MessagesActivity extends Activity {
 	ParseUser currentUser = ParseUser.getCurrentUser();
 	String username = "";
 	ParseQueryAdapter<ParseObject> adapter;
+	AlertDialog alert;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,15 +94,46 @@ public class MessagesActivity extends Activity {
 		});
 		adapter.setTextKey("message");
 		*/
-		MessageAdapter adapter = new MessageAdapter(MessagesActivity.this,username);
+		final MessageAdapter adapter = new MessageAdapter(MessagesActivity.this,username);
 		messages.setAdapter(adapter);
 		messages.setSelection(0);
 		contactName.setText(otherUser.getString("name").toString());
 		
+		messages.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+			@Override
+			public boolean onItemLongClick(AdapterView<?> parent, View view,
+					final int position, long id) {
+				AlertDialog.Builder builder = new AlertDialog.Builder(MessagesActivity.this);
+				builder.setMessage("Are you sure you would like to continue?")
+			       .setTitle("Deleting message");
+				builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			               ParseObject message = adapter.getItem(position);
+			               //ParseObject message2 = adapter.getItem(position+1);
+			               
+			               message.deleteInBackground();
+			               //message2.put("isMostRecent", true);
+			               //message2.saveInBackground();
+			               
+			           }
+				});
+				
+				builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+			           public void onClick(DialogInterface dialog, int id) {
+			               
+			           }
+				});
+				alert = builder.create();
+				alert.show();
+			           
+				return false;
+			}
+		});
+		
 		//adapter.notifyDataSetChanged();
 		replyButton.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
 				ParseQuery<ParseObject> lastQuery = ParseQuery.getQuery("Messages");
 				lastQuery.whereEqualTo("sender", currentUser);
@@ -123,8 +160,6 @@ public class MessagesActivity extends Activity {
 						else{
 							Log.d("error", e.toString());
 						}
-						
-						
 					}
 				});
 				Intent intent = new Intent(MessagesActivity.this,CoreActivity.class);
@@ -136,9 +171,6 @@ public class MessagesActivity extends Activity {
 		});
 		
 	}
-
-	
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
