@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.finalproject.EditProfileActivity" >
+
+    <ImageView
+        android:id="@+id/imageViewEditProfilePic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_launcher" />
+
+    <EditText
+        android:id="@+id/editTextEditEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextEditName"
+        android:layout_below="@+id/editTextEditName"
+        android:ems="10"
+        android:hint="@string/email" />
+
+    <EditText
+        android:id="@+id/editTextEditPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextEditEmail"
+        android:layout_below="@+id/editTextEditEmail"
+        android:ems="10"
+        android:hint="@string/password" />
+
+    <EditText
+        android:id="@+id/editTextEditBirthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextEditPassword"
+        android:layout_below="@+id/editTextEditPassword"
+        android:ems="10"
+        android:hint="@string/birthday" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editTextEditGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextEditBirthday"
+        android:layout_below="@+id/editTextEditBirthday"
+        android:ems="10"
+        android:hint="@string/gender" />
+
+    <Button
+        android:id="@+id/buttonEditPic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageViewEditProfilePic"
+        android:text="@string/editPic_str" />
+
+    <EditText
+        android:id="@+id/editTextEditUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonEditPic"
+        android:layout_below="@+id/buttonEditPic"
+        android:ems="10"
+        android:hint="@string/username" />
+
+    <EditText
+        android:id="@+id/editTextEditAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextEditGender"
+        android:layout_below="@+id/editTextEditGender"
+        android:ems="10"
+        android:hint="@string/address" />
+
+    <EditText
+        android:id="@+id/editTextEditName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextEditUserName"
+        android:layout_below="@+id/editTextEditUserName"
+        android:ems="10"
+        android:hint="@string/name" />
+
+    <Button
+        android:id="@+id/buttonSaveChanges"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextEditAddress"
+        android:layout_below="@+id/editTextEditAddress"
+        android:layout_marginTop="19dp"
+        android:text="@string/saveChanges_str" />
+
+</RelativeLayout>
