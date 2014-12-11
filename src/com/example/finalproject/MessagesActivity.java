@@ -30,6 +30,7 @@ public class MessagesActivity extends Activity {
 	ParseUser otherUser;
 	ParseUser currentUser = ParseUser.getCurrentUser();
 	String username = "";
+	ParseQueryAdapter<ParseObject> adapter;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,8 +42,19 @@ public class MessagesActivity extends Activity {
 		if(getIntent().getExtras() != null){
 			username = getIntent().getExtras().getString("username");			
 		}
-		
-		ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(MessagesActivity.this, new ParseQueryAdapter.QueryFactory<ParseObject>() {
+		List<ParseUser> userList = new ArrayList<ParseUser>();
+		ParseQuery<ParseUser> query = ParseUser.getQuery();
+		query.whereEqualTo("username", username);
+		//query.find()
+		try {
+			userList = query.find();
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		otherUser = userList.get(0);
+		/**
+		adapter = new ParseQueryAdapter<ParseObject>(MessagesActivity.this, new ParseQueryAdapter.QueryFactory<ParseObject>() {
 
 			@Override
 			public ParseQuery<ParseObject> create() {
@@ -75,8 +87,13 @@ public class MessagesActivity extends Activity {
 			}
 		});
 		adapter.setTextKey("message");
-		//Log.d("ada", adapter.toString());
+		*/
+		MessageAdapter adapter = new MessageAdapter(MessagesActivity.this,username);
 		messages.setAdapter(adapter);
+		messages.setSelection(0);
+		contactName.setText(otherUser.getString("name").toString());
+		
+		//adapter.notifyDataSetChanged();
 		replyButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -107,12 +124,21 @@ public class MessagesActivity extends Activity {
 							Log.d("error", e.toString());
 						}
 						
+						
 					}
 				});
+				Intent intent = new Intent(MessagesActivity.this,CoreActivity.class);
+				intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				startActivity(intent);
+				finish();
 			}
 		});
 		
 	}
+
+	
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,8 +158,6 @@ public class MessagesActivity extends Activity {
 			ParseUser.logOut();
 			currentUser = ParseUser.getCurrentUser();
 			Intent intent = new Intent(MessagesActivity.this,MainActivity.class);
-			//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			//intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
