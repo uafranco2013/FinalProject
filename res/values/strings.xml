@@ -27,5 +27,7 @@
     <string name="deleteAccount_str">Delete String</string>
     <string name="title_activity_edit_settings">EditSettingsActivity</string>
     <string name="follow_str">Follow</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="view_profile">My Profile</string>
 
 </resources>

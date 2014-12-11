@@ -26,7 +26,7 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f080015;
-        public static final int action_settings=0x7f080024;
+        public static final int action_settings=0x7f080026;
         public static final int buttonDeleteAccount=0x7f08000f;
         public static final int buttonEdit=0x7f080010;
         public static final int buttonEditProfilePic=0x7f080002;
@@ -55,6 +55,8 @@ public final class R {
         public static final int listViewMessages=0x7f080005;
         public static final int listViewMsgs=0x7f080014;
         public static final int listViewUsers=0x7f080012;
+        public static final int my_profile=0x7f080025;
+        public static final int sign_out=0x7f080024;
         public static final int textViewAddress=0x7f08000c;
         public static final int textViewBirthday=0x7f08000b;
         public static final int textViewContactName=0x7f080004;
@@ -103,6 +105,7 @@ public final class R {
         public static final int reply_str=0x7f050011;
         public static final int sendNewMsg=0x7f050015;
         public static final int sign_in=0x7f050005;
+        public static final int sign_out=0x7f05001a;
         public static final int sign_up=0x7f050006;
         public static final int submit=0x7f05000e;
         public static final int title_activity_core=0x7f05000f;
@@ -110,6 +113,7 @@ public final class R {
         public static final int title_activity_messages=0x7f050010;
         public static final int title_activity_profile_settings=0x7f050013;
         public static final int username=0x7f050003;
+        public static final int view_profile=0x7f05001b;
     }
     public static final class style {
         /** 

@@ -51,7 +51,7 @@ public class SignInFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				ParseUser.logInInBackground(username.getText().toString(), password.getText().toString(), new LogInCallback() {					  
+				ParseUser.logInInBackground(username.getText().toString().trim(), password.getText().toString().trim(), new LogInCallback() {					  
 					@Override
 					public void done(ParseUser user, ParseException e) {
 						if (user != null) {
@@ -69,7 +69,7 @@ public class SignInFragment extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				ParseUser.requestPasswordResetInBackground(username.getText().toString(),
+				ParseUser.requestPasswordResetInBackground(username.getText().toString().trim(),
                         new RequestPasswordResetCallback() {
 					public void done(ParseException e) {
 						if (e == null) {
