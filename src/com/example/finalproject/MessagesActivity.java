@@ -110,18 +110,37 @@ public class MessagesActivity extends Activity {
 				builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 			           public void onClick(DialogInterface dialog, int id) {
 			               ParseObject message = adapter.getItem(position);
-			               //ParseObject message2 = adapter.getItem(position+1);
+			               if(message.getBoolean("isMostRecent")){
+			            	   ParseQuery<ParseObject> nextOne =  ParseQuery.getQuery("Messages");
+			            	   ParseObject next = null;
+			            	   nextOne.whereEqualTo("receiver", currentUser);
+			            	   nextOne.whereEqualTo("sender", otherUser);
+			            	   nextOne.whereEqualTo("isMostRecent", false);
+			            	   nextOne.addDescendingOrder("createdAt");
+			            	   try {
+								next = nextOne.getFirst();
+							} catch (ParseException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+			            	   next.put("isMostRecent", true);
+			            	   next.saveInBackground();
+			            	   Log.d("test", next.getString("message"));
+			               }
 			               
 			               message.deleteInBackground();
-			               //message2.put("isMostRecent", true);
-			               //message2.saveInBackground();
+			               Intent intent = new Intent(MessagesActivity.this,CoreActivity.class);
+			               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+			               intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			               startActivity(intent);
+			               finish();
 			               
 			           }
 				});
 				
 				builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
 			           public void onClick(DialogInterface dialog, int id) {
-			               
+			        	   
 			           }
 				});
 				alert = builder.create();
