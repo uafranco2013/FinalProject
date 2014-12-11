@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 
 public class ProfileSettingsActivity extends Activity {
@@ -24,6 +23,7 @@ public class ProfileSettingsActivity extends Activity {
 	Button sendNewMsg, edit, delete, followBtn;
 	ParseUser user = ParseUser.getCurrentUser();
 	ParseUser otherUser;
+	ParseObject followingCheck;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class ProfileSettingsActivity extends Activity {
 		edit = (Button) findViewById(R.id.buttonEdit);
 		delete = (Button) findViewById(R.id.buttonDeleteAccount);
 		followBtn = (Button) findViewById(R.id.buttonFollow);
-		
+
 		sendNewMsg.setVisibility(View.INVISIBLE);
 		edit.setVisibility(View.INVISIBLE);
 		delete.setVisibility(View.INVISIBLE);
@@ -50,7 +50,7 @@ public class ProfileSettingsActivity extends Activity {
 
 		if (getIntent().getExtras() != null) {
 			String userName2 = getIntent().getExtras().getString("username");
-			//Log.d("demo", userName2);
+			// Log.d("demo", userName2);
 
 			ParseQuery<ParseUser> query = ParseUser.getQuery();
 			query.whereEqualTo("username", userName2);
@@ -65,8 +65,7 @@ public class ProfileSettingsActivity extends Activity {
 						gender.setText(user.get("gender").toString());
 						birthday.setText(user.get("birthday").toString());
 						address.setText(user.get("address").toString());
-						// profilePic.
-						
+
 						Log.d("demo", otherUser.getString("name"));
 
 						edit.setVisibility(View.VISIBLE);
@@ -76,8 +75,9 @@ public class ProfileSettingsActivity extends Activity {
 
 							@Override
 							public void onClick(View v) {
-								Intent intent = new
-								Intent(ProfileSettingsActivity.this, EditProfileActivity.class);
+								Intent intent = new Intent(
+										ProfileSettingsActivity.this,
+										EditProfileActivity.class);
 								startActivity(intent);
 							}
 						});
@@ -90,12 +90,12 @@ public class ProfileSettingsActivity extends Activity {
 									user.delete();
 									ParseUser.logOut();
 									user = ParseUser.getCurrentUser();
-									
+
 									Intent intent = new Intent(
 											ProfileSettingsActivity.this,
 											MainActivity.class);
-									//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-									//intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+									// intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+									// intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 									intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 									intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 									startActivity(intent);
@@ -104,21 +104,20 @@ public class ProfileSettingsActivity extends Activity {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
-								
-								
+
 							}
 						});
 
-					} else{
+					} else {
 						userName.setText(otherUser.getUsername().toString());
 						name.setText(otherUser.get("name").toString());
 						gender.setText(otherUser.get("gender").toString());
 						birthday.setText(otherUser.get("birthday").toString());
 						address.setText(otherUser.get("address").toString());
-						
+
 						sendNewMsg.setVisibility(View.VISIBLE);
 						followBtn.setVisibility(View.VISIBLE);
-						
+
 						sendNewMsg
 								.setOnClickListener(new View.OnClickListener() {
 
@@ -127,29 +126,70 @@ public class ProfileSettingsActivity extends Activity {
 										Intent intent = new Intent(
 												ProfileSettingsActivity.this,
 												MessagesActivity.class);
-										intent.putExtra("username", otherUser
-												.getUsername());
+										intent.putExtra("username",
+												otherUser.getUsername());
 										startActivity(intent);
 									}
 								});
-						
-						final ParseObject following = new ParseObject("Following");
-						followBtn.setOnClickListener(new View.OnClickListener() {
-							
-							public void onClick(View v) {
-								if (followBtn.getText().toString().equals("Follow")){
-									followBtn.setText("Unfollow");
-									following.put("follower", user);
-									following.put("following", otherUser.getUsername());
-									following.saveInBackground();
-									Log.d("demo", "follower: " + user.getUsername());
-								}else{
-									followBtn.setText("Follow");
-									following.deleteInBackground();
+
+						ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
+								"Following");
+
+						// Log.d("demo", user.getUsername().toString());
+						// Log.d("demo", otherUser.getUsername().toString());
+						query.whereEqualTo("follower", user);
+						query.whereEqualTo("following", otherUser.getUsername());
+						query.findInBackground(new FindCallback<ParseObject>() {
+
+							@Override
+							public void done(List<ParseObject> objects,
+									ParseException e) {
+								if (e == null) {
+									if (objects.size() > 0) {
+										followingCheck = objects.get(0);
+										if (otherUser.getUsername()
+												.equals(followingCheck
+														.get("following"))
+												|| user.equals(followingCheck
+														.get("follower"))) {
+											followBtn.setText("Unfollow");
+										}
+									}
+								} else {
+									Log.d("demo", e.toString());
 								}
-								
 							}
+
 						});
+
+						final ParseObject following = new ParseObject(
+								"Following");
+						
+
+						followBtn
+								.setOnClickListener(new View.OnClickListener() {
+
+									public void onClick(View v) {
+
+										if (followBtn.getText().toString()
+												.equals("Follow")) {
+											followBtn.setText("Unfollow");
+											following.put("follower", user);
+											following.put("following",
+													otherUser.getUsername());
+											following.saveInBackground();
+										
+										} else {
+											followBtn.setText("Follow");
+											Log.d("demo",
+													"follower: "
+															+ followingCheck.getString("follower"));
+											followingCheck.deleteInBackground();
+											
+										}
+
+									}
+								});
 					}
 				}
 			});
@@ -173,9 +213,10 @@ public class ProfileSettingsActivity extends Activity {
 		if (id == R.id.sign_out) {
 			ParseUser.logOut();
 			currentUser = ParseUser.getCurrentUser();
-			Intent intent = new Intent(ProfileSettingsActivity.this,MainActivity.class);
-			//intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-			//intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+			Intent intent = new Intent(ProfileSettingsActivity.this,
+					MainActivity.class);
+			// intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+			// intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
 			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
