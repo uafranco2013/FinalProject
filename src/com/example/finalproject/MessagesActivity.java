@@ -123,9 +123,11 @@ public class MessagesActivity extends Activity {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
+			            	   if(next != null){
 			            	   next.put("isMostRecent", true);
 			            	   next.saveInBackground();
 			            	   Log.d("test", next.getString("message"));
+			            	   }
 			               }
 			               
 			               message.deleteInBackground();
