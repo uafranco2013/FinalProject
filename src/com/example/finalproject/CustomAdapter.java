@@ -15,15 +15,15 @@ import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 public class CustomAdapter extends ParseQueryAdapter<ParseObject> {
 
-	static ParseUser currentUser = ParseUser.getCurrentUser();
+	ParseUser currentUser = ParseUser.getCurrentUser();
 	public CustomAdapter(Context context) {
 		
 
 		super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
 			public ParseQuery create() {
-				
+				ParseUser user = ParseUser.getCurrentUser();
 				ParseQuery query = new ParseQuery("Messages");
-				query.whereEqualTo("receiver", currentUser);
+				query.whereEqualTo("receiver", user);
 				query.whereEqualTo("isMostRecent", true);
 				//query.whereEqualTo("sender", currentUser);
 				query.include("sender");
